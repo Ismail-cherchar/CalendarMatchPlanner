@@ -21,7 +21,6 @@ def distribution_team(teams):
     poules = [[], [], [], []]
     i = 0
 
-    #Boucle wjhi
     while i < len(teams):
         poule_index = i % 4
         poule = poules[poule_index]
