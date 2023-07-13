@@ -16,7 +16,7 @@ last_match = []
 while counter < 10:
     for sublist in match:
         match_string = ''.join(sublist)
-        if last_match is not [] and any(element in last_match for element in sublist):
+        if last_match != [] and any(element in last_match for element in sublist):
             continue
 
         if match_string not in new_match:
