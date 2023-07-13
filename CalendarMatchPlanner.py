@@ -1,53 +1,33 @@
-from datetime import datetime, timedelta
+teams = ["A", "B", "C", "D", "E"]
 
-teams = [chr(k) for k in range(ord("A"), ord("T") + 1)]
+match = []
 
-poules = [teams[i:i+5] for i in range(0, len(teams), 5)]
+for i in range(len(teams)):
+    for j in range(len(teams)):
+        if teams[i] != teams[j] and teams[j] + teams[i] not in match:
+            match.append(teams[i] + teams[j])
 
-matches = [[(team1, team2) for i, team1 in enumerate(poule) for team2 in poule[i+1:]] for poule in poules]
+new_match = []
+counter = 0
+last_match = None
 
-start_date = datetime.now()
-current_date = start_date
+while counter < 10:
+    for sublist in match:
+        match_string = ''.join(sublist)
+        if last_match is not None and any(element in last_match for element in sublist):
+            continue
 
-def schedule_match(team, opponent):
-    global current_date
-    print(f"  {current_date.strftime('%d-%m-%Y')}: {opponent}")
-    current_date += timedelta(days=1)
+        if match_string not in new_match:
+            new_match.append(match_string)
+            counter += 1
+            last_match = sublist
 
-def schedule_last_match(team, opponent):
-    global current_date
-    print(f"  {current_date.strftime('%d-%m-%Y')}: {opponent} ")
-    current_date += timedelta(days=1)
+        if counter == 10:
+            break
 
-for i, poule in enumerate(poules):
-    print(f"Poule {i + 1}: {', '.join(poule)}")
-    for j, team in enumerate(poule):
-        opponents = [opponent for opponent in poule if opponent != team]
-        print(f"{team} contre :")
-        
-        if team == 'B' and 'A' in opponents:
-            opponents.remove('A')
-            opponents.append('A')
+    if counter == 10:
+        break
 
-        
-        if team == 'G' and 'F' in opponents:
-            opponents.remove('F')
-            opponents.append('F')
-        
-        if team == 'L' and 'K' in opponents:
-            opponents.remove('K')
-            opponents.append('K')
-        
-        if team == 'Q' and 'P' in opponents:
-            opponents.remove('P')
-            opponents.append('P')
-        
-        for opponent in opponents[:-1]:
-            schedule_match(team, opponent)
-        
-        if team == 'B':
-            schedule_last_match(team, opponents[-1])
-        else:
-            schedule_match(team, opponents[-1])
-    
-    print()
+# Afficher new_match
+for item in new_match:
+    print(item)
