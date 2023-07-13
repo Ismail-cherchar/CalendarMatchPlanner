@@ -1,16 +1,19 @@
-teams = ["A", "B", "C", "D", "E"]
+teams = ["A", "B", "C", "D", "E"] #Create teams
 
-match = []
+match = [] #Create match
 
+#Delete duplicates teams
 for i in range(len(teams)):
     for j in range(len(teams)):
         if teams[i] != teams[j] and teams[j] + teams[i] not in match:
             match.append(teams[i] + teams[j])
 
+#Variable definition
 new_match = []
 counter = 0
 last_match = None
 
+#Verification of each element for sublist
 while counter < 10:
     for sublist in match:
         match_string = ''.join(sublist)
@@ -25,7 +28,7 @@ while counter < 10:
         if counter == 10:
             break
 
-    if counter == 10:
+    if counter == 10: #ten matchs 
         break
 
 # Afficher new_match
