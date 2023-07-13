@@ -1,16 +1,18 @@
-teams = ["A", "B", "C", "D", "E"]
+teams = ["A", "B", "C", "D", "E"] #create teams
+match = [] #initiat match
 
-match = []
-
+#delete duplicates element in match[]
 for i in range(len(teams)):
     for j in range(len(teams)):
         if teams[i] != teams[j] and teams[j] + teams[i] not in match:
             match.append(teams[i] + teams[j])
 
+#variable set definition
 new_match = []
 counter = 0
 last_match = []
 
+#verification of consecutive element present in match and adding new matches to a new_list[]
 while counter < 10:
     for sublist in match:
         match_string = ''.join(sublist)
